@@ -29,7 +29,7 @@ public class FrogJumpTest {
     }
 
     @Before
-    public void setUp() {
+    public void setup() {
         frogJump = new FrogJump();
     }
 
