@@ -5,6 +5,10 @@ package LeetCode.java;
  *
  * 思路简述：给一棵树添加一条冗余的边，会在无向图内形成一个环路，去除度数为 1 的节点
  *          和它的边（重复），最后剩下来的即为环，环的任意一边即为冗余边
+ *
+ * 优化方向：重复去除度数为1的节点，不用每次都遍历，初始所有度数为1的节点放在队列中，
+ *          每次去掉一个节点，如果它唯一的边对应的节点度数也为1，将对应节点加入队列，
+ *          队列为空结束
  */
 
 import java.util.ArrayList;
@@ -19,7 +23,6 @@ public class RedundantConnection {
         if(edges == null || edges.length == 0) {
             return null;
         }
-        int N = edges.length;
 
         // 用邻接表来表示图的拓扑
         Map<Integer, List<Integer>> adjacentMap = getAdjacentMap(edges);
