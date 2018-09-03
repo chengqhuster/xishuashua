@@ -26,7 +26,7 @@ public class RedundantConnectionIITest {
     }
 
     @Parameterized.Parameters
-    public static List getPatams() {
+    public static List getParams() {
         int[][] caseA = {{1,2}, {1,3}, {2,3}};
         int[] resA = {2, 3};
         int[][] caseB = {{1,2}, {2,3}, {3,4}, {4,1}, {1,5}};
@@ -37,7 +37,7 @@ public class RedundantConnectionIITest {
         int[] resD = {3, 1};
         return Arrays.asList(new Object[][] {
                 {caseA, resA},
-                {caseB,resB},
+                {caseB, resB},
                 {caseC, resC},
                 {caseD, resD}
         });

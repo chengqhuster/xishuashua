@@ -127,9 +127,4 @@ public class RedundantConnectionII {
             }
         }
     }
-
-    public static void main(String[] args) {
-        int[][] intput = {{5,2}, {5,1}, {3,1}, {3,4}, {3,5}};
-        System.out.println(new RedundantConnectionII().findRedundantDirectedConnection(intput));
-    }
 }

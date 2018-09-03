@@ -48,6 +48,7 @@ public class LongestConsecutiveSequence {
         int aID = find(id, a);
         int bID = find(id, b);
         if(aID != bID) {
+            // 优化 将较小的树作为子树加入较大树的根节点 使树结构更加平衡(需要额外的空间存储树深度，或在find时返回该信息)
             id[bID] = aID;
             state[aID] = state[aID] + state[bID];
             return Math.max(length, state[aID]);
@@ -57,10 +58,16 @@ public class LongestConsecutiveSequence {
     }
 
     private int find(int[] id, int num) {
-        if(id[num] != num) {
-            return find(id, id[num]);
-        } else {
-            return num;
+        // reduce tree deep
+        while(id[num] != num) {
+            id[num] = id[id[num]];
+            num = id[num];
         }
+        return num;
+//        if(id[num] != num) {
+//            return find(id, id[num]);
+//        } else {
+//            return num;
+//        }
     }
 }
