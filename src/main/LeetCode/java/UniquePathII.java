@@ -1,7 +1,7 @@
 package LeetCode.java;
 
 /*
- * 题目描述：https://leetcode.com/problems/unique-paths/description/
+ * 题目描述：https://leetcode.com/problems/unique-paths-ii/description/
  *
  * 思路简述：动态规划 注意状态转移即可
  *
