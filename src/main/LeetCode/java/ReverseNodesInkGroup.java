@@ -43,7 +43,6 @@ public class ReverseNodesInkGroup {
                 temp.next = node;
                 node = temp;
                 last = temp.next;
-
             } else if((count+1)%k == 0) {
                 if(KLastTail == null) {
                     resHead = node;
