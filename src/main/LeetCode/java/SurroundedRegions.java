@@ -3,64 +3,65 @@ package LeetCode.java;
 /*
  * 题目描述：https://leetcode.com/problems/surrounded-regions/description/
  *
- * 思路简述：宽度优先遍历 BSF 从边界 o 节点出发将所有与之存在邻接关系的 o 节点标记
- *         为n(不需要被覆盖)
+ * 思路简述：dfs 遍历时候用stack保存邻接的'O'的位置，满足包围条件时把'O'换成'X'
+ *
  */
+
+import java.util.Stack;
 
 public class SurroundedRegions {
     // 上下左右移动
     private int[][] moves = new int[][]{{0, 1}, {0, -1}, {-1 ,0}, {1, 0}};
+    private boolean flag;
+    private boolean[][] state;
+    private int m, n;
 
     public void solve(char[][] board) {
-        if(board == null || board.length == 0)
+        if(board == null || board.length == 0) {
             return;
-        int X = board.length;
-        int Y = board[0].length;
-        // 将不需要被覆盖的 o 替换为 n
-        for(int i=0; i<X; i++) {
-            if(board[i][0] == 'o') {
-                bfs(board, i, 0);
-            }
-            if(board[i][Y-1] == 'o') {
-                bfs(board, i, Y-1);
+        }
+        m = board.length;
+        n = board[0].length;
+        state = new boolean[m][n];
+        Stack<int[]> st = new Stack<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!state[i][j]) {
+                    state[i][j] = true;
+                    if (board[i][j] == 'O') {
+                        flag = true;
+                        st.removeAllElements();
+                        bfs(board, i, j, st);
+                        if (flag) {
+                            while (!st.isEmpty()) {
+                                int[] pos = st.pop();
+                                board[pos[0]][pos[1]] = 'X';
+                            }
+                        }
+                    }
+                }
             }
         }
-        for(int j=0; j<Y; j++) {
-            if(board[0][j] == 'o') {
-                bfs(board, 0, j);
-            }
-            if(board[X-1][j] == 'o') {
-                bfs(board, X-1, j);
-            }
-        }
-        // o -> x
-        for(int i=0; i<X; i++) {
-            for(int j=0; j<Y; j++) {
-                if(board[i][j] == 'o')
-                    board[i][j] = 'x';
-            }
-        }
-        // n -> o
-        for(int i=0; i<X; i++) {
-            for(int j=0; j<Y; j++) {
-                if(board[i][j] == 'n')
-                    board[i][j] = 'o';
+
+    }
+
+    private void bfs(char[][] board, int i, int j, Stack<int[]> stack) {
+        state[i][j] = true;
+        stack.push(new int[]{i, j});
+        for (int[] move : moves) {
+            int x = i + move[0];
+            int y = j + move[1];
+            if (isValidPos(x, y)) {
+                if (!state[x][y] && board[x][y] == 'O') {
+                    bfs(board, x, y, stack);
+                }
+            } else {
+                flag = false;
             }
         }
     }
 
-    private void bfs(char[][] board, int i, int j) {
-        board[i][j] = 'n';
-        int X = board.length;
-        int Y = board[0].length;
-        for(int[] move : moves) {
-            int[] pos = new int[]{i + move[0], j + move[1]};
-            if(isValidPos(pos, X, Y) && board[pos[0]][pos[1]] == 'o')
-                bfs(board, pos[0], pos[1]);
-        }
-    }
-
-    private boolean isValidPos(int[] pos, int X, int Y) {
-        return (pos[0] >= 0 && pos[0] < X && pos[1] >= 0 && pos[1] < Y);
+    private boolean isValidPos(int x, int y) {
+        return x >= 0 && x < m && y >= 0 && y < n;
     }
 }
