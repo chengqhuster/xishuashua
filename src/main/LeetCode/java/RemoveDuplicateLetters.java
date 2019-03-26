@@ -43,8 +43,4 @@ public class RemoveDuplicateLetters {
         }
         return sb.reverse().toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(new RemoveDuplicateLetters().removeDuplicateLetters("edebbed"));
-    }
 }
