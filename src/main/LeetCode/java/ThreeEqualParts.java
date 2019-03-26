@@ -89,8 +89,4 @@ public class ThreeEqualParts {
         }
         return count;
     }
-
-    public static void main(String[] args) {
-        new ThreeEqualParts().threeEqualParts(new int[]{0,1,0,1,1,0,1,1,0,1});
-    }
 }
