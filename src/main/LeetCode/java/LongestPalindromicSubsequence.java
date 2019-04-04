@@ -25,10 +25,10 @@ public class LongestPalindromicSubsequence {
             for(int j=0; j<N; j++) {
                 if (j + i < N) {
                     int len = DP[j + 1][j + i - 1];
-                   if (s.charAt(j) == s.charAt(j + i)) {
-                       len = len + 2;
-                   }
-                   DP[j][j + i] = Math.max(len, Math.max(DP[j + 1][j + i], DP[j][j + i - 1]));
+                    if (s.charAt(j) == s.charAt(j + i)) {
+                        len = len + 2;
+                    }
+                    DP[j][j + i] = Math.max(len, Math.max(DP[j + 1][j + i], DP[j][j + i - 1]));
                 }
             }
         }

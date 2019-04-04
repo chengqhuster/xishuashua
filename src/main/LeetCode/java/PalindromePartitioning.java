@@ -1,0 +1,69 @@
+package LeetCode.java;
+
+/*
+ * 题目描述：https://leetcode.com/problems/palindrome-partitioning/
+ *
+ * 思路简述：DP[i][j] 代表从 i（包含） 开始到 j（包含） 的子字符串是否为回文串
+ *          先用 dp 计算出子字符串是否为回文串，减少直接对 s 进行回溯（DFS）时的回文判断
+ *          *** 理解回溯与深度优先遍历的关系 ***
+ *
+ */
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
+public class PalindromePartitioning {
+    public List<List<String>> partition(String s) {
+        if (s == null || s.length() == 0) {
+            return new LinkedList<>();
+        }
+        int len = s.length();
+        boolean[][] dp = new boolean[len][len];
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
+        }
+        for (int subLen = 2; subLen <= len; subLen++) {
+            for (int i = 0; i < len; i++) {
+                int j = i + subLen - 1;
+                if (j < len) {
+                    if (s.charAt(i) == s.charAt(j)) {
+                        if (subLen == 2) {
+                            dp[i][j] = true;
+                        } else {
+                            dp[i][j] = dp[i + 1][j - 1];
+                        }
+                    }
+                }
+            }
+        }
+        //检查是否有 (0, k1) (k1+1, k2) ... (kn, len-1) 使得该序列在 dp 中都为 true，采用回溯的方式
+        List<List<String>> res = new LinkedList<>();
+        Stack<Integer> st = new Stack<>();
+        backtrackingCore(0, dp, s, st, res);
+        return res;
+    }
+
+    private void backtrackingCore(int start, boolean[][] dp, String s, Stack<Integer> st, List<List<String>> res) {
+        for (int i = start; i < dp.length; i++) {
+            if (dp[start][i]) {
+                st.push(i);
+                if (i == dp.length - 1) {
+                    Iterator<Integer> it = st.iterator();
+                    List<String> subSeq = new LinkedList<>();
+                    int index = 0;
+                    while (it.hasNext()) {
+                        int end = it.next();
+                        subSeq.add(s.substring(index, end + 1));
+                        index = end + 1;
+                    }
+                    res.add(subSeq);
+                } else {
+                    backtrackingCore(i + 1, dp, s, st, res);
+                }
+                st.pop();
+            }
+        }
+    }
+}
