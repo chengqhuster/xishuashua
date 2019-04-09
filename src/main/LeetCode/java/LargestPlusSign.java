@@ -76,8 +76,4 @@ public class LargestPlusSign {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        new LargestPlusSign().orderOfLargestPlusSign(5, new int[][]{{4,2}});
-    }
 }
