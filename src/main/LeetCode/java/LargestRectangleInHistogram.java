@@ -48,4 +48,53 @@ public class LargestRectangleInHistogram {
         }
         return res;
     }
+
+    // 用两个数组保存第一个比当前位置低的左右位置，采用非遍历的方式，利用已有的left，right信息
+    public int largestRectangleAreaSec(int[] heights) {
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+        int len = heights.length;
+        int[] left = new int[len];
+        int[] right = new int[len];
+        left[0] = -1;
+        right[len - 1] = len;
+        for (int i = 1; i < len; i++) {
+            int p = i - 1;
+            while (p >= 0 && heights[p] >= heights[i]) {
+                p = left[p];
+            }
+            left[i] = p;
+        }
+        for (int i = len - 2; i >= 0; i--) {
+            int p = i + 1;
+            while (p < len && heights[p] >= heights[i]) {
+                p = right[p];
+            }
+            right[i] = p;
+        }
+        int res = 0;
+        for (int i = 0; i < len; i++) {
+            res = Math.max(res, heights[i] * (right[i] - left[i] - 1));
+        }
+        return res;
+    }
+
+    // 相比第一种解法省去了移位过程，每次pop的时候左界由栈中该元素的上一个元素位置决定（也即解法一中的移位信息）
+    public int largestRectangleAreaTri(int[] height) {
+        int len = height.length;
+        Stack<Integer> s = new Stack<Integer>();
+        int maxArea = 0;
+        for(int i = 0; i <= len; i++){
+            int h = (i == len ? 0 : height[i]);
+            if(s.isEmpty() || h >= height[s.peek()]){
+                s.push(i);
+            }else{
+                int tp = s.pop();
+                maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
+                i--;
+            }
+        }
+        return maxArea;
+    }
 }
