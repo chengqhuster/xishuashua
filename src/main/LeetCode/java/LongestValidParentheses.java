@@ -13,6 +13,8 @@ package LeetCode.java;
  *
  */
 
+import java.util.Stack;
+
 public class LongestValidParentheses {
     public int longestValidParentheses(String s) {
         if(s == null || s.length() == 0)
@@ -94,5 +96,34 @@ public class LongestValidParentheses {
                 }
             }
         }
+    }
+
+    // 用栈计算符号匹配情况，匹配的符号弹出栈，最终剩下就是将字符串分割为一个个匹配子串的符号位置
+    public int longestValidParenthesesSec(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        int len = s.length();
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < len; i++) {
+            if (s.charAt(i) == '(') {
+                st.push(i);
+            } else {
+                if (!st.isEmpty() && s.charAt(st.peek()) == '(') {
+                    st.pop();
+                } else {
+                    st.push(i);
+                }
+            }
+        }
+        int res = 0;
+        int a = len, b = 0;
+        while (!st.isEmpty()) {
+            b = st.pop();
+            res = Math.max(res, a - b - 1);
+            a = b;
+        }
+        res = Math.max(res, a);
+        return res;
     }
 }
