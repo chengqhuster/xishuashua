@@ -10,7 +10,6 @@ package LeetCode.java;
 import java.util.HashMap;
 import java.util.Map;
 
-// todo to be solved
 public class CanIWin {
     boolean[] state;
     Map<Integer, Boolean> map;
@@ -27,6 +26,7 @@ public class CanIWin {
         return dfs(desiredTotal);
     }
 
+    // state[i] = false 从 A 换到 B 处，能够实现解
     private boolean dfs(int total) {
         int key = format(state);
         if (!map.containsKey(key)) {
@@ -38,8 +38,10 @@ public class CanIWin {
                         state[i] = false;
                         return true;
                     }
+                    // B
+                    state[i] = false;
                 }
-                state[i] = false;
+                // A
             }
             map.put(key, false);
         }
