@@ -4,7 +4,7 @@ package LeetCode.java;
  * 题目描述：https://leetcode.com/problems/divisor-game/
  *
  * 思路简述：DP
-  *         数学可证明 N 为偶数时 先手必赢
+ *          数学可证明 N 为偶数时 先手必赢
  */
 
 public class DivisorGame {
