@@ -41,14 +41,9 @@ public class ReversePairs {
                 k++;
             }
             count += k - mid;
-
         }
 
         System.arraycopy(temp, 0, nums, left, start);
         return count;
-    }
-
-    public static void main(String[] args) {
-        new ReversePairs().reversePairs(new int[]{2,4,3,5,1});
     }
 }
