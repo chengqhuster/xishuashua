@@ -7,7 +7,6 @@ package LeetCode.java;
  *          的位置与前部分的 key 有关系）
  *          dp[i][j] 代表 key 的从 i 位开始的尾子串，ring 的12点位置在 j 处时的解，dp时对于 key 要从后往前计算
  *
- *
  */
 
 public class FreedomTrail {
