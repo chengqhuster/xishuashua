@@ -10,6 +10,7 @@ package LeetCode.java;
 public class NumberOfMatchingSubsequences {
     public int numMatchingSubseq(String S, String[] words) {
         //todo
+        return 0;
     }
 
     public int numMatchingSubseqTLE(String S, String[] words) {
