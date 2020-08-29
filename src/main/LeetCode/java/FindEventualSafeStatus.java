@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FindEventualSafeStatus{
     final static int COLOR_BLANK = 0;
-    final static int COLOE_RED = 1;
+    final static int COLOR_RED = 1;
     final static int COLOR_BLUE = 2;
 
     public List<Integer> eventualSafeNodes(int[][] graph) {
@@ -38,7 +38,7 @@ public class FindEventualSafeStatus{
         if (color[pos] != COLOR_BLANK) {
             return color[pos] == COLOR_BLUE;
         }
-        color[pos] = COLOE_RED;
+        color[pos] = COLOR_RED;
         for (int next : graph[pos]) {
             if (!dfs(graph, color, res, next)) {
                 return false;
