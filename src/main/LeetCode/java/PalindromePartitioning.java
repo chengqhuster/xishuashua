@@ -19,22 +19,13 @@ public class PalindromePartitioning {
         if (s == null || s.length() == 0) {
             return new LinkedList<>();
         }
-        int len = s.length();
-        boolean[][] dp = new boolean[len][len];
-        for (int i = 0; i < len; i++) {
-            dp[i][i] = true;
-        }
-        for (int subLen = 2; subLen <= len; subLen++) {
-            for (int i = 0; i < len; i++) {
-                int j = i + subLen - 1;
-                if (j < len) {
-                    if (s.charAt(i) == s.charAt(j)) {
-                        if (subLen == 2) {
-                            dp[i][j] = true;
-                        } else {
-                            dp[i][j] = dp[i + 1][j - 1];
-                        }
-                    }
+        int size = s.length();
+        boolean[][] dp = new boolean[size][size];
+        for (int len = 0; len < size; len++) {
+            for (int start = 0; start < size - len; start++) {
+                int end = start + len;
+                if (s.charAt(start) == s.charAt(end)) {
+                    dp[start][end] = start + 1 >= end - 1 || dp[start + 1][end - 1];
                 }
             }
         }
@@ -50,8 +41,8 @@ public class PalindromePartitioning {
             if (dp[start][i]) {
                 st.push(i);
                 if (i == dp.length - 1) {
-                    Iterator<Integer> it = st.iterator();
                     List<String> subSeq = new LinkedList<>();
+                    Iterator<Integer> it = st.iterator();
                     int index = 0;
                     while (it.hasNext()) {
                         int end = it.next();

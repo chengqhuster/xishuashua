@@ -16,32 +16,21 @@ public class ValidPalindromeII {
                 i++;
                 j--;
             } else {
-                // remove front
-                int ii = i + 1;
-                int jj = j;
-                while (ii < jj) {
-                    if (s.charAt(ii) == s.charAt(jj)) {
-                        ii++;
-                        jj--;
-                    } else {
-                        break;
-                    }
-                }
-                if (ii >= jj) {
-                    return true;
-                }
-                // remove back
-                j--;
-                while (i < j) {
-                    if (s.charAt(i) == s.charAt(j)) {
-                        i++;
-                        j--;
-                    } else {
-                        return false;
-                    }
-                }
-                return true;
+                // 判断去掉前面还是后面的元素
+                return  (s.charAt(i) == s.charAt(j - 1) && isPalindrome(s, i, j - 1))
+                        || (s.charAt(i + 1) == s.charAt(j) && isPalindrome(s, i + 1, j));
             }
+        }
+        return true;
+    }
+
+    private boolean isPalindrome(String s, int start, int end) {
+        while (start < end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
         }
         return true;
     }
