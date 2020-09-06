@@ -1,6 +1,5 @@
 package LeetCode.java;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
