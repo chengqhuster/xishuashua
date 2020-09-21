@@ -1,37 +1,31 @@
 package LeetCode.java;
 
+import java.math.BigDecimal;
+
 /**
  * 题目描述：https://leetcode.com/problems/additive-number/
  *
- * 思路简述：参考 SplitArrayIntoFibonacciSequence
+ * 思路简述：参考 SplitArrayIntoFibonacciSequence，数字范围没有限制，使用BigDecimal格式
  */
 public class AdditiveNumber {
 
     public boolean isAdditiveNumber(String num) {
         int len = num.length();
-        int firstNum, secondNum;
+        BigDecimal firstNum, secondNum;
         // i 代表第一个数字串末尾位置（非包含）
         for (int i = 1; i < len; i++) {
             String first = num.substring(0, i);
             if (!zeroCheck(first)) {
                 break;
             }
-            try {
-                firstNum = Integer.parseInt(first);
-            } catch (NumberFormatException e) {
-                break;
-            }
+            firstNum = new BigDecimal(first);
             // j 代表第二个数字串末尾位置（非包含）
             for(int j = i + 1; j < len; j++) {
                 String second = num.substring(i, j);
                 if (!zeroCheck(second)) {
                     break;
                 }
-                try {
-                    secondNum = Integer.parseInt(second);
-                } catch (NumberFormatException e) {
-                    break;
-                }
+                secondNum = new BigDecimal(second);
                 if (fibonacciCheck(num, firstNum, secondNum, j)) {
                     return true;
                 }
@@ -52,12 +46,9 @@ public class AdditiveNumber {
         return true;
     }
 
-    private boolean fibonacciCheck(String s, int first, int second, int index) {
-        int next = first + second;
-        if (next < 0) {
-            return false;
-        }
-        String nextStr = String.valueOf(next);
+    private boolean fibonacciCheck(String s, BigDecimal first, BigDecimal second, int index) {
+        BigDecimal next = first.add(second);
+        String nextStr = next.toString();
         int nextIndex = index + nextStr.length();
         if (nextIndex > s.length()) {
             return false;
