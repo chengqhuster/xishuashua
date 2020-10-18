@@ -11,7 +11,6 @@ package LeetCode.java;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class FindEventualSafeStatus{
@@ -50,6 +49,7 @@ public class FindEventualSafeStatus{
     }
 }
 
+/**
 class FindEventualSafeStatusTLE {
     public List<Integer> eventualSafeNodes(int[][] graph) {
         List<Integer> res = new ArrayList<>();
@@ -106,3 +106,4 @@ class FindEventualSafeStatusTLE {
         }
     }
 }
+*/
