@@ -62,6 +62,7 @@ public class ZeroOneMatrix {
     }
 }
 
+/**
 class ZeroOneMatrixSVF {
     int[][] moves = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     boolean[][] state;
@@ -116,3 +117,4 @@ class ZeroOneMatrixSVF {
         return x >=0 && x < len && y >= 0 && y < wid;
     }
 }
+*/
