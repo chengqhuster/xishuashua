@@ -1,5 +1,9 @@
 class RemoveAllOccurrencesOfASubstring:
     def removeOccurrences(self, s: str, part: str) -> str:
+        """
+        https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
+
+        """
         # 栈，存储可能符合条件的序列，元素是(s_index, p_index)
         stack = []
         # 子序列对应的 s 索引集合
