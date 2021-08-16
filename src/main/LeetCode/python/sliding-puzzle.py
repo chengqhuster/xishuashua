@@ -6,6 +6,7 @@ class Solution:
 
     def slidingPuzzle(self, board: List[List[int]]) -> int:
         """
+        https://leetcode.com/problems/sliding-puzzle/
         BSF + memory
 
         """
