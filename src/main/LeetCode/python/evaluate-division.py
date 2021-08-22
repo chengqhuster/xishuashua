@@ -6,6 +6,7 @@ from collections import deque
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         """
+        https://leetcode.com/problems/evaluate-division/
         并查集，通过 map 维护
         宽度优先遍历
 
