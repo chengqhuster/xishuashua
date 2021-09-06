@@ -5,10 +5,10 @@ class Solution:
         f(n) 与 f(n - 1) 之间的关系
 
         """
-        sum_a, sum_e, sum_i, sum_o, sum_u = 5, 4, 3, 2, 1
-        for i in range(1, n):
-            sum_a = sum_a + sum_e + sum_i + sum_o + sum_u
-            sum_e = sum_e + sum_i + sum_o + sum_u
-            sum_i = sum_i + sum_o + sum_u
-            sum_o = sum_o + sum_u
-        return sum_a
+        sum_list = [1] * 5
+        for i in range(0, n):
+            sum_list[4] = sum(sum_list[:4])
+            sum_list[3] = sum(sum_list[:3])
+            sum_list[2] = sum(sum_list[:2])
+            sum_list[1] = sum(sum_list[:1])
+        return sum_list[4]
