@@ -3,7 +3,7 @@ package LeetCode.java;
 import java.util.*;
 
 /**
- * 题目描述：https://leetcode.com/problems/jump-game-vii/
+ * 题目描述：https://leetcode.com/problems/jump-game-iv/
  *
  * 思路简述：1. 转化为图（相同的数字看作一个节点），然后是一个最短路径的问题，但是没有解决具体一个位置上的直接邻居和间接邻居的问题。
  *         2. 直接 bfs，先构建一个数字到索引位置的反向映射
