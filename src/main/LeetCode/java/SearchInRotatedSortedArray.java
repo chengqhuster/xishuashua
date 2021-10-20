@@ -49,4 +49,32 @@ public class SearchInRotatedSortedArray {
         }
         return -1;
     }
+
+    public int searchNew(int[] nums, int target) {
+        // find the pivot index
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (nums[high] < nums[mid]) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        int offset = low;
+        low = 0;
+        high = nums.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int realMid = (mid + offset) % nums.length;
+            if (nums[realMid] == target) {
+                return realMid;
+            } else if (nums[realMid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
 }
