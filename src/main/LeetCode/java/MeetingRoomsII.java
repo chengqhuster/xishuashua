@@ -2,6 +2,12 @@ package LeetCode.java;
 
 import java.util.Arrays;
 
+/**
+ * 题目描述：https://leetcode.com/problems/meeting-rooms-ii/
+ *
+ * 思路简述：区间重叠数量问题，对端点进行排序即可，标识出起始端点
+ *
+ */
 public class MeetingRoomsII {
 
     public int minMeetingRooms(int[][] intervals) {
